@@ -57,65 +57,6 @@ public class AddTodo extends AppCompatActivity {
             }
         });
 
-        /*et_min.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int m = Integer.parseInt(et_min.getText().toString());
-                    if (m >= 10){
-                        Toast.makeText(AddTodo.this, "Timer can't be more than 10 minutes!", Toast.LENGTH_SHORT).show();
-                    }
-                }catch (NumberFormatException e){
-                    et_min.setText("");
-                    Toast.makeText(AddTodo.this, "Only valid numbers are allowed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        et_sec.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
-                try {
-                    //if (charSequence.charAt()) this position is not integer then set second edittext to 00
-                    int mi = Integer.parseInt(et_min.getText().toString());
-                    int se = Integer.parseInt(et_sec.getText().toString());
-                    if (se <= 0){
-                        if (mi <= 0) Toast.makeText(AddTodo.this, "Timer should contain at-least 1 second and at-most 10 minutes!", Toast.LENGTH_SHORT).show();
-                    }else {
-                        if (mi >= 10) {
-                            Toast.makeText(AddTodo.this, "Timer should not contain more than 10 minutes!", Toast.LENGTH_SHORT).show();
-                            et_sec.setText("00");
-                        }
-                        if (se > 59) Toast.makeText(AddTodo.this, "Kindly change minutes!", Toast.LENGTH_SHORT).show();
-                    }
-                }catch (NumberFormatException e){
-                    et_sec.setText("");
-                    Toast.makeText(AddTodo.this, "Only valid numbers are allowed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });*/
-        //todo remove text change listener after uploading to db
-
         min_up.setOnClickListener(min -> {
             try {
                 int m = Integer.parseInt(et_min.getText().toString());
@@ -178,15 +119,12 @@ public class AddTodo extends AppCompatActivity {
     }
 
     private synchronized void uploadToStorage(TodoModal modal) {
-        //todo update data on database
-        //MainActivity m = new MainActivity();
-        //m.addItems(modal);
         helper.addNewTodo(modal);
         et_title.setText("");
         et_desc.setText("");
         et_min.setText("00");
         et_sec.setText("00");
-        Toast.makeText(this, "Data to be uploaded !\n"+modal.duration, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Data uploaded !", Toast.LENGTH_SHORT).show();
     }
 
     private synchronized void initViews() {

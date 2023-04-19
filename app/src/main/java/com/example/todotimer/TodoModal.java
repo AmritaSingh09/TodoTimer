@@ -1,10 +1,7 @@
 package com.example.todotimer;
 
-import java.io.Serializable;
-
 public class TodoModal {
 
-    //status 0: , 1: , 2:
     public String title, description;
     public int duration, time_left;
     public String id;

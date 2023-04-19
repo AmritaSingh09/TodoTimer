@@ -63,11 +63,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             holder.countDownTimer = new CountDownTimer(modal.time_left * 1000,1000){
                 @Override
                 public void onTick(long l) {
-                    //long seconds = l/1000;
-                    //long minutes = seconds/60;
                     modal.time_left = (int) l/1000;//Integer.parseInt(String.valueOf(l));
-                    //Toast.makeText(context, "Long returns : mins"+(l/1000)+" : seconds "+(l/60000), Toast.LENGTH_SHORT).show();
-                    //holder.time_lft.setText(l/60000 + ":" + l/1000);
                     holder.time_lft.setText(((modal.time_left/60) < 10 ?"0"+modal.time_left/60:(modal.time_left/60))+":"+ ((modal.time_left%60)<10? ("0"+modal.time_left%60) : (modal.time_left%60)));
 
                 }
@@ -85,12 +81,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         });
 
         holder.pause.setOnClickListener(vi ->{
-            //todo update to db
             holder.countDownTimer.cancel();
             holder.play.setVisibility(View.VISIBLE);
             holder.pause.setVisibility(View.GONE);
             helper.updateDataToDatabase(modal);
-            Toast.makeText(context, "Time left = "+ modal.time_left, Toast.LENGTH_SHORT).show();
         });
 
         holder.remove.setOnClickListener(v -> {

@@ -37,11 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         rv_todos.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
 
-        //todo fetch from local database
         modalList = new ArrayList<>();
         synchronized (this) {
             modalList = helper.getAllTodos();
-            Toast.makeText(this, "Size is : "+modalList.size(), Toast.LENGTH_SHORT).show();
         }
         adapter = new TodoAdapter(modalList, MainActivity.this, helper);
         rv_todos.setAdapter(adapter);
@@ -54,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         synchronized (this) {
             modalList = helper.getAllTodos();
             adapter = new TodoAdapter(modalList, MainActivity.this,helper);
-            Toast.makeText(this, "Size = " +modalList.size(), Toast.LENGTH_SHORT).show();
         }
     }
-
-    //use interfaces and helpers to update data
 }

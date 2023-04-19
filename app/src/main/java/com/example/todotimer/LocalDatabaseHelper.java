@@ -52,16 +52,6 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
 
         db.insert(TABLE_NAME,null,contentValues);
         db.close();
-        /*
-        String query = "INSERT INTO "+ DATABASE_NAME+" VALUES ( "+ String.valueOf(System.currentTimeMillis())+" , "
-                + modal.title + " , "
-                + modal.description + " , "
-                + modal.duration + " , "
-                + modal.time_left + " , "
-                + modal.duration
-                + ")";
-
-         */
     }
 
     public List<TodoModal> getAllTodos(){
@@ -90,18 +80,9 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-    //on running on stop on pause and on resume status
 
     public void updateDataToDatabase(TodoModal modal) {
         SQLiteDatabase db = this.getWritableDatabase();
-        /*String query = "UPDATE INTO "+ DATABASE_NAME+" VALUES ( "+ String.valueOf(System.currentTimeMillis())+" , "
-                + modal.title + " , "
-                + modal.description + " , "
-                + modal.duration + " , "
-                + modal.time_left + " , "
-                + modal.duration
-                + ") WHERE ID = "+modal.id;*/
-
         ContentValues contentValues = new ContentValues();
         /*contentValues.put("TITLE",modal.title);
         contentValues.put("DESCRIPTION",modal.description);
@@ -111,7 +92,6 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
 
         db.update(TABLE_NAME,contentValues,"ID=?",new String[]{modal.id});
         db.close();
-        //database.execSQL(query);
     }
 
 }
