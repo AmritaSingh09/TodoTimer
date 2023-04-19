@@ -1,42 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/blk_p"
     tools:context=".AddTodo">
 
-    <EditText
-        android:id="@+id/et_title"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title*"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="?actionBarSize"
+        app:navigationIcon="@drawable/baseline_close_24"
+        app:title="Add Todo"
+        android:background="@color/blk_s"
+        app:titleTextColor="@color/white_p"
         />
 
-    <EditText
-        android:id="@+id/et_desc"
+    <TextView
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        />
-
-    <EditText
-        android:id="@+id/et_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Time*"
-        android:text="10 minutes"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:drawableStart="@drawable/baseline_access_time_24"
+        android:text="Duration should be greater than 0 second or less than 10 minute 1 second. By default duration is of 10 minutes."
+        android:drawableStart="@drawable/outline_info_24"
         android:drawablePadding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/toolbar"
+        android:drawableTint="@color/light_blue"
+        android:textColor="@color/blue_green"
+        android:background="@drawable/curve_bg"
+        android:backgroundTint="@color/blk_s"
+        android:layout_marginHorizontal="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:textSize="12sp"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:layout_centerInParent="true"
+        >
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/todo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_bg"
+            android:layout_below="@id/img"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blk_s"
+            android:layout_marginHorizontal="10dp"
+            >
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title*"
+                android:textColorHint="@color/white_s"
+                android:textColor="@color/white_p"
+                android:layout_margin="10dp"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:background="@color/blk_s"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/l2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_bg"
+            android:layout_below="@id/l1"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blk_s"
+            android:layout_marginHorizontal="10dp"
+            >
+            <EditText
+                android:id="@+id/et_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:textColorHint="@color/white_s"
+                android:textColor="@color/white_p"
+                android:layout_margin="10dp"
+                android:inputType="textCapSentences|textMultiLine"
+                android:ellipsize="end"
+                android:background="@color/blk_s"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_bg"
+            android:layout_below="@id/l2"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blk_s"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Duration*"
+                android:textColor="@color/white_s"
+                android:drawableStart="@drawable/baseline_access_time_24"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:drawableTint="@color/white_s"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blk_s"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp"
+                    android:gravity="center"
+                    >
+                    <EditText
+                        android:id="@+id/et_min"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="00"
+                        android:text="10"
+                        android:gravity="center"
+                        android:drawableTint="@color/white_s"
+                        android:textColorHint="@color/white_s"
+                        android:textColor="@color/white_p"
+                        android:maxLength="2"
+                        android:backgroundTint="@color/white_s"
+                        android:inputType="numberSigned"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/min_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:layout_gravity="center"
+                            app:tint="@color/white_s"/>
+
+                        <ImageView
+                            android:id="@+id/min_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:layout_gravity="center"
+                            app:tint="@color/white_s"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Minutes"
+                android:textColor="@color/white_s"
+                android:textSize="12sp"
+                android:layout_gravity="center_vertical"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blk_s"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp"
+                    >
+                    <EditText
+                        android:id="@+id/et_sec"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="00"
+                        android:text="00"
+                        android:gravity="center"
+                        android:drawableTint="@color/white_s"
+                        android:textColorHint="@color/white_s"
+                        android:textColor="@color/white_p"
+                        android:maxLength="2"
+                        android:backgroundTint="@color/white_s"
+                        android:inputType="numberSigned"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/sec_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:layout_gravity="center"
+                            app:tint="@color/white_s"
+                            />
+
+                        <ImageView
+                            android:id="@+id/sec_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:layout_gravity="center"
+                            app:tint="@color/white_s"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Seconds"
+                android:textColor="@color/white_s"
+                android:textSize="12sp"
+                android:layout_gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/upload"
+            android:layout_below="@+id/l3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:textSize="14sp"
+            android:textColor="@color/light_blue"
+            android:background="@drawable/blue_curve"
+            android:drawableTint="@color/sky_blue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
