@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -124,7 +125,11 @@ public class AddTodo extends AppCompatActivity {
         et_desc.setText("");
         et_min.setText("00");
         et_sec.setText("00");
+        Intent intent = new Intent();
+        intent.putExtra("data",modal);
+        setResult(RESULT_OK, intent);
         Toast.makeText(this, "Data uploaded !", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private synchronized void initViews() {

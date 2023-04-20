@@ -1,6 +1,8 @@
 package com.example.todotimer;
 
-public class TodoModal {
+import java.io.Serializable;
+
+public class TodoModal implements Serializable {
 
     public String title, description;
     public int duration, time_left;

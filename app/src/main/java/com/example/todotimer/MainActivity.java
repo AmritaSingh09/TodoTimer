@@ -1,5 +1,6 @@
 package com.example.todotimer;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         helper = new LocalDatabaseHelper(MainActivity.this);
 
         add.setOnClickListener(vi -> {
-            startActivity(new Intent(MainActivity.this, AddTodo.class));
+            startActivityForResult(new Intent(MainActivity.this, AddTodo.class),1000);
         });
 
         rv_todos.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
@@ -46,12 +47,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     protected void onResume() {
-        super.onResume();
         synchronized (this) {
             modalList = helper.getAllTodos();
             adapter = new TodoAdapter(modalList, MainActivity.this,helper);
         }
+        super.onResume();
+    }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (data != null) {
+            modalList.add(modalList.size(), (TodoModal) data.getSerializableExtra("data"));
+            if (adapter != null){
+                adapter.notifyItemInserted(modalList.size()-1);
+            }else {
+                modalList = helper.getAllTodos();
+                adapter = new TodoAdapter(modalList, MainActivity.this,helper);
+            }
+        }
+
     }
 }
